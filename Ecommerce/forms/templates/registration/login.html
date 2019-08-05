@@ -1,0 +1,87 @@
+ {% load staticfiles %}
+<! DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type = "text/css" href= "{% static 'css/main.css' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/css/bootstrap.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/css/style.css' %}">
+
+    <meta charset="UTF-8">
+    <title>Login</title>
+
+
+
+
+    <style>
+        body {
+            background-color: #303641;
+        }
+    </style>
+</head>
+<body>
+
+<header id="header">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="header_top">
+          <div class="header_top_left">
+            <ul class="top_nav">
+              <li><a href="http://127.0.0.1:8000">Home</a></li>
+              <li><a href="http://127.0.0.1:8000/signup">REGISTER</a></li>
+              <li><a href="http://127.0.0.1:8000/login">LOGIN</a></li>
+              <li><a href="http://127.0.0.1:8000/sports">Sports</a></li>
+               <li><a href="http://127.0.0.1:8000/politics">Politics</a></li>
+               <li><a href="http://127.0.0.1:8000/business">Business</a></li>
+               <li><a href="http://127.0.0.1:8000/world">World</a></li>
+                                
+
+            </ul>
+          </div>
+          <div class="header_top_right">
+              {{ time }}
+              {% if user.is_authenticated %}
+              <p><b>{{user.username }}</b></p>
+               
+             {%endif%}
+          
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+<div id="container-register">
+{% block content %}
+
+     <div id="title">
+            <i class="material-icons lock">lock</i> LOGIN
+        </div>
+
+
+
+
+
+
+
+  <form method="post">
+    {% csrf_token %}
+
+    {{ form.as_p}} <!--username and password are loadedwith the help of this code-->
+
+    <button class="btn btn-primary" type="submit">Login</button>
+  </form>
+
+     <div class="register">
+            Don't have an account yet?
+            <a href="http://127.0.0.1:8000/signup"><button id="register-link">Register here</button></a>
+        </div>
+</div>
+{% endblock %}
+</body>
+</html>
+
+
