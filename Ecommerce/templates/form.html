@@ -1,5 +1,19 @@
 {% load static %}
 <head>
+
+<style>
+  .clsScroll
+  {
+    height:300px;
+    width:1000px;
+    background:white;
+    overflow-y:auto;
+    overflow-x:auto;
+  }
+  
+}
+
+</style>
 <title>{% block title %}News {% endblock %}</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -92,6 +106,7 @@
 
               <p>
                   
+                  
                     
                 <h1>{% block news_title %} {{news.news_title}}{% endblock %}</h1>
                 <p style="font-size:25px; text-align :justify;" >{% block news_content %} <img src =  {{news.news_image}} , height= 350px, width = 650px> <br>
@@ -121,20 +136,24 @@
             <h2><span>Recommended News</span></h2>
             <ul class="spost_nav">
              
-              {% for x in news2 %}
+              {% for x, y, z in cosirecome %}
+              
                   {% if x == news %}
+   
 
                   {% else %}
+                  
                       <li>
-                        <div class="media wow fadeInDown"> <a href={% url "single_news" x.id  %} class="media-left"> <img src =    {{ x.news_image}} , height = '50', width = '100' > </a>
-                          <div class="media-body"> <a href={% url "single_news" x.id  %} class="catg_title"> {{x.news_title}}  </a> <br> </div>
+                        <div class="media wow fadeInDown"> <a href={% url "single_news" x.id  %} class="media-left"> <img src =    {{ x.news_image}}  data-toggle="tooltip" title={{y}}, height = '50', width = '100' > </a>
+                          <div class="media-body"> <a href={% url "single_news" x.id  %} data-toggle="tooltip" title={{y}} class="catg_title"> {{x.news_title}}  </a> <br> <br> <button type="button" disabled>[{{z}}] </button></div>
                         </div>
                       </li>
                   {% endif %}
+                  
               {% endfor %}
 
             
-
+              
              
             </ul>
             {%endif%}
@@ -146,8 +165,10 @@
    
  
   </section> 
+  
+  
 
-    <!-- footer -->
+  
 
    <footer id="footer">
     <div class="footer_top">
@@ -169,11 +190,26 @@
        
       </div>
     </div>
+    
     <div class="footer_bottom">
       <h2> Note: Used only for educational purpose</h2>
      
     </div>
   </footer>
+  {% if user.is_authenticated %}
+
+
+
+  <div class = "clsScroll">
+    
+        
+            {{ result|linebreaksbr }}
+           
+        
+    
+        </div>
+
+        {%endif%}
 </div>
 
 </body>

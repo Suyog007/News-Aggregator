@@ -1,10 +1,11 @@
 import math
 import numpy as np
 import nltk
-nltk.download('punkt')
-nltk.download('wordnet')
+# nltk.download('punkt')
+# nltk.download('wordnet')
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
+
 
 
 def SplitWord(title):
@@ -12,6 +13,7 @@ def SplitWord(title):
     nltk_stopwords = nltk.corpus.stopwords.words('english')
     tokens = nltk.tokenize.word_tokenize(title)
     tokens = [token for token in tokens if not token in nltk_stopwords]
+    
     return tokens
 
 def ComputeTF(wordDict, bow):
@@ -24,6 +26,7 @@ def ComputeTF(wordDict, bow):
 
 def ComputeIDF(docList):
     N = len(docList)
+    
     idfDict = dict.fromkeys(docList[0].keys(), 0)
     for doc in docList:
         for word, val in doc.items():
@@ -32,8 +35,9 @@ def ComputeIDF(docList):
 
     for word, val in idfDict.items():
         idfDict[word] = math.log10(N / float(val))
-
+    
     return idfDict
+
 
 
 def computeTFIDF(tfBow, idfs):

@@ -23,7 +23,7 @@
             <ul class="top_nav">
                
               <li><a href="http://127.0.0.1:8000/">Home</a></li>
-              <!-- <li><a href="http://127.0.0.1:8000/about">ABOUT</a></li> -->
+          
               {% if user.is_authenticated %}
 
               {%else%}
@@ -33,7 +33,9 @@
                       <li><a href="http://127.0.0.1:8000/business">Business</a></li>
                      <li> <a href="http://127.0.0.1:8000/sports">Sports</a></li>
                      <li> <a href="http://127.0.0.1:8000/world">World</a></li>
-
+              {% if user.is_staff %}
+              <li> <a href="http://127.0.0.1:8000/admin">Admin</a></li>
+              {%endif%}
 
               
                     
@@ -117,36 +119,9 @@
       </div>
 
   
-
-     
-      <!-- {% if user.is_authenticated %}
-     
-      <div class="col-lg-4 col-md-4 col-sm-4">
-        
-        <aside class="right_content">
-          <div class="single_sidebar">
-
-            <h2><span>Popular Post</span></h2>
-            
-            <ul class="spost_nav">
-                {% for x in news2 %}
-              <li>
-                <div class="media wow fadeInDown"> <a href={% url "single_news" x.id  %} class="media-left"> <img src =    {{ x.news_image}} , height = '50', width = '100' > </a>
-                  <div class="media-body"> <a href={% url "single_news" x.id  %} class="catg_title"> {{x.news_title}}  </a> <br> </div>
-                </div>
-              </li>
-              {%endfor%}
-            
-            </ul>
-          </div>
-        </aside>
-      
-      </div>
-      {% endif %}
-     -->
     </div>
 
-  
+   
 
     
     {% if news.has_other_pages %}

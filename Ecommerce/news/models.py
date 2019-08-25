@@ -23,7 +23,4 @@ class News(models.Model):
         return self.news_title
 
 
-class Comments(models.Model):
-    id = models.AutoField(primary_key = True)
-    comment_content = models.CharField(max_length= 1000)
-    name = models.ForeignKey(User, on_delete=models.CASCADE)
+
